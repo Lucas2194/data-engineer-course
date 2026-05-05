@@ -13,3 +13,7 @@
 ## Moja notatka
 
 Git pozwala zapisywać historię zmian w projekcie.
+
+## Dodatkowa notatka
+
+Commit powinien opisywać jedną konkretną zmianę.
