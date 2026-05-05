@@ -11,9 +11,12 @@ venv/
 logs/
 *.log
 
-# Data files
-data/raw/
-data/processed/
+# Ignore data files but keep folder placeholders
+data/raw/*
+!data/raw/.gitkeep
+
+data/processed/*
+!data/processed/.gitkeep
 
 # OS files
 .DS_Store
