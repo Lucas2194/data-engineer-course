@@ -15,4 +15,16 @@ Tutaj wpisz własną odpowiedź.
 
 ## Co muszę powtórzyć?
 
-Tutaj wpisz własną odpowiedź.
+Tutaj wpisz własną odpowiedź. 
+
+## Komendy Terminal 
+
+pwd - ściezka
+ls - wyświetla pliki w folderze
+mkdir - tworzenie folderu 
+cat wyświetla zawartość pliku
+> - nadpisuje plik
+> - dopisuje do pliku
+copy - kopiowanie 
+ren zmiana nazwy pliku 
+rm usuwanie pliku
