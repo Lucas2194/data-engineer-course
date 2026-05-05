@@ -21,3 +21,4 @@ Commit powinien opisywać jedną konkretną zmianę.
 ## Staging
 
 Staging area to miejsce przygotowania zmian do commita.
+Staging area pozwala wybrać, które zmiany trafią do commita.
