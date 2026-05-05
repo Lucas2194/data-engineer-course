@@ -30,3 +30,4 @@ x64
 
 Utworzyłem folder kursu i pierwszy plik README.md. 
 
+Aktualnie uczę się podstaw Git.
