@@ -14,15 +14,3 @@
 | `copy a.txt b.txt` | kopiuje plik |
 | `ren stara.txt nowa.txt` | zmienia nazwę pliku |
 | `rm plik.txt` | usuwa plik |
-
-## Co dzisiaj zrozumiałem?
-
-Tutaj wpisz własnymi słowami.
-
-## Co było trudne?
-
-Tutaj wpisz własnymi słowami.
-
-## Co muszę powtórzyć?
-
-Tutaj wpisz własnymi słowami.
