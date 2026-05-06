@@ -31,3 +31,12 @@ x64
 Utworzyłem folder kursu i pierwszy plik README.md. 
 
 Aktualnie uczę się podstaw Git.
+
+## GitHub
+
+Projekt został opublikowany na GitHubie jako moje repozytorium kursowe.
+
+Od teraz ćwiczę pełny cykl pracy:
+
+```text
+zmiana pliku → git add → git commit → git push

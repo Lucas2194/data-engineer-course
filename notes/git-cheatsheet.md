@@ -15,3 +15,14 @@
 
 On branch master
 nothing to commit, working tree clean
+
+Teraz najważniejszy moment:
+
+git push -u origin main
+
+Co oznacza ta komenda?
+
+git push        = wyślij moje commity
+origin          = do zdalnego repozytorium o nazwie origin
+main            = z lokalnej gałęzi main
+-u              = zapamiętaj to połączenie na przyszłość
