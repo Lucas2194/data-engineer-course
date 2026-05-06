@@ -12,3 +12,6 @@
 | `git log --oneline` | pokazuje krótką historię |
 | `git restore plik` | cofa niezacommitowane zmiany w pliku |
 | `git restore --staged plik` | usuwa plik ze staging area |
+
+On branch master
+nothing to commit, working tree clean
