@@ -21,3 +21,7 @@ data/processed/*
 # OS files
 .DS_Store
 Thumbs.db
+
+# Moje notatki
+
+notes/prompt-główny.md
