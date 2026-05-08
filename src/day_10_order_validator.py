@@ -11,7 +11,7 @@ if order_value <= 0:
 if order_status not in allowed_status:
     errors.append('Nie mamy takiego statusu zamówienia')
 
-if len(erros) == 0:
+if len(errors) == 0:
     print('Nie ma błędów')
 else:
     for i in errors:
