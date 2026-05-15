@@ -1,12 +1,12 @@
 def is_valid_status(status):
-    allowed_statuses = ['paid', 'cancel', 'shipping']
+    allowed_statuses = ['paid', 'cancel', 'shipped']
     return status in allowed_statuses
 
 def validate_order(order):
     errors = []
 
     if order.get('order_id') is None:
-        errors.append(f"Zamówienie ID: {order.get("order_id", "BRAK")} - Brakuje klucza identyfikatora zamówienia")
+        errors.append(f"Zamówienie ID: {order.get('order_id', 'BRAK')} - Brakuje klucza identyfikatora zamówienia")
     
     if order.get('order_value') is None:
         errors.append(f'Zamówienie o ID: {order.get("order_id", "BRAK")} - Brakuje klucza wartości zamówienia')
@@ -28,3 +28,36 @@ def validate_orders(orders):
         errors.extend(validate_order(order))
     
     return errors
+
+def count_valid_orders(orders):
+    count = 0
+    
+    for order in orders:
+        if not validate_order(order):
+            count += 1
+
+    return count
+
+        
+def count_invalid_orders(orders):
+
+    count = 0 
+
+    for order in orders:
+        if validate_order(order):
+            count += 1
+
+    return count
+
+def split_orders_by_validity(orders):
+
+    valid_orders = []
+    invalid_orders = []
+
+    for order in orders:
+        if not validate_order(order):
+            valid_orders.append(order)
+        else:
+            invalid_orders.append(order)
+
+    return valid_orders, invalid_orders

@@ -16,3 +16,8 @@ def print_summary(orders, errors):
         print('Dane mogą iść dalej')
     else:
         print('Dane wymagają poprawy')
+
+def print_valid_invalid_summary(valid_count, invalid_count):
+
+    print(f'liczba poprawnych zamówień to: {valid_count}')
+    print(f'Liczba niepoprawnych zamówień to: {invalid_count}')
