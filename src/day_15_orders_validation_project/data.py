@@ -39,5 +39,26 @@ def get_orders():
             'order_id': 2008,
             'order_value': 999.00,
             'status': 'shipped'
-        }   # 8. Poprawne
+        },
+        {
+            'order_id': 2009,
+            'order_value': '249.99',
+            'status': ' PAID '
+        },
+        {
+            'order_id': 2010,
+            'order_value': 'abc',
+            'status': 'paid'
+        },
+        {
+            'order_id': 2012,
+            'order_value': '0',
+            'status': 'cancel'
+        },
+        {
+            'order_id' : 2013,
+            'order_value': 150,
+            'status': 123
+        }
+
     ]

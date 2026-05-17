@@ -5,17 +5,27 @@ def is_valid_status(status):
 def validate_order(order):
     errors = []
 
+    raw_order_value = order.get("order_value")
+
     if order.get('order_id') is None:
         errors.append(f"Zamówienie ID: {order.get('order_id', 'BRAK')} - Brakuje klucza identyfikatora zamówienia")
     
-    if order.get('order_value') is None:
+    if raw_order_value is None:
         errors.append(f'Zamówienie o ID: {order.get("order_id", "BRAK")} - Brakuje klucza wartości zamówienia')
-    elif order['order_value'] <= 0:
-        errors.append(f'Zamówienie o ID: {order.get("order_id", "BRAK")} - Wartość zamówienia jest równa, bądź mniejsza od 0')
+    else:
+        order_value = safe_float(raw_order_value)
+
+        if order_value is None:
+            errors.append(f'Zamówienie o ID: {order.get("order_id", "BRAK")} - Niepoprawna wartość zamówienia')
+        elif order_value <= 0:
+            errors.append(f'Zamówienie o ID: {order.get("order_id", "BRAK")} - Wartość zamówienie jest mniejsza bądź równa 0')
     
-    if order.get('status') is None:
+    raw_status = order.get("status")
+    status = normalize_status(raw_status)
+
+    if status is None:
         errors.append(f'Zamówienie ID: {order.get("order_id", "Brak")} - Brakuje klucza statusu zamówienia')
-    elif not is_valid_status(order['status']):
+    elif not is_valid_status(status):
         errors.append(f'Zamówienie ID: {order.get("order_id", "Brak")} - Niedozwolony status zamówienia')
 
     return errors
@@ -61,3 +71,16 @@ def split_orders_by_validity(orders):
             invalid_orders.append(order)
 
     return valid_orders, invalid_orders
+
+def safe_float(value):
+    try:
+        return float(value)
+    except (ValueError, TypeError):
+        return None
+    
+def normalize_status(status):
+    if isinstance(status, str):
+        return status.lower().strip()
+    return None
+
+    
