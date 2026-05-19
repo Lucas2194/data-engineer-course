@@ -1,0 +1,16 @@
+! --- Raport Walidacji --- !
+- Zamówienie ID: BRAK - Brakuje klucza zamówienia
+- Zamówienie o ID: BRAK - Niedozowolony status
+- Zamówienie o ID: 2003 - Brakuje klucza wartości zamówienia
+- Zamówienie o ID: 2004 - Wartość zamówienia mniejsza lub równa 0
+- Zamówienie o ID: 2005 - Brakuja klucza statusu zamówienia
+- Zamówienie o ID: 2006 - Niedozowolony status
+- Zamówienie o ID: 2007 - Wartość zamówienia mniejsza lub równa 0
+- Zamówienie o ID: 2007 - Niedozowolony status
+- Zamówienie o ID: 2010 - Niepoprawna wartość zamówienia
+- Zamówienie o ID: 2012 - Wartość zamówienia mniejsza lub równa 0
+- Zamówienie o ID: 2013 - Brakuja klucza statusu zamówienia
+ ! --- Podsumowanie --- !
+Liczba wszystkich zamówień to : 12
+Liczba błędów to : 11
+Dane wymagają poprawy
