@@ -1,6 +1,10 @@
 from validator import validate_orders, count_valid_orders, count_invalid_orders, split_orders_by_validity
 from data import get_orders
 from report import print_summary, print_valid_invalid_summary
+from pathlib import Path
+
+print(Path.cwd())
+print(Path(__file__).parent)
 
 def main():
     orders = get_orders()
