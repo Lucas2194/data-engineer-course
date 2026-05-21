@@ -1,0 +1,4 @@
+order_id,customer_name,total_amount,status
+1001,Anna,249.99,paid
+1004,Marek,120.00,paid
+1005,Ola,-15.00,paid
