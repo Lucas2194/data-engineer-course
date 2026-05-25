@@ -39,3 +39,10 @@ def write_orders_to_csv(file_path, orders):
         writer.writeheader()
         for order in orders:
             writer.writerow(order)
+
+def write_text_to_file(file_path, text):
+    file_path = Path(file_path)
+    file_path.parent.mkdir(parents=True, exist_ok = True)
+
+    with open(file_path, "w", encoding = "utf-8") as file:
+        file.write(text)

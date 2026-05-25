@@ -1,3 +1,7 @@
 order_id,customer_name,total_amount,status
 1003,Kasia,0,cancelled
 1005,Ola,-15.00,paid
+1006,,55.00,paid
+1007,Piotr,abc,paid
+1008,Ewa,310.00,unknown
+1009,Karol,,pending

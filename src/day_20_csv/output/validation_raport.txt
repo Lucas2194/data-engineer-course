@@ -1,0 +1,13 @@
+! --- Raport walidacji pliku CSV --- !
+
+Liczba wszystkich zamówień to: 9
+Liczba zamówień poprawnych to: 3
+Liczba zamówień błędnych to: 6
+
+--- Szczegóły błędów ---
+- Zamówienie o ID 1003 - Wartość zamówienia jest mniejsza bądź równa 0
+- Zamówienie o ID 1005 - Wartość zamówienia jest mniejsza bądź równa 0
+- Zamówienie o ID 1006 - Brakuje klucza imienia klienta
+- Zamówienie o ID 1007 - Niepoprawna wartość zamówienia
+- Zamówienie o ID 1008 - Niepoprawny status zamówienia
+- Zamówienie o ID 1009 - Brakuje klucza wartości zamówienia
