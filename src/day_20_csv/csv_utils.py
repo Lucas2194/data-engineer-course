@@ -23,7 +23,7 @@ def read_orders_from_csv_way_second(file_path):
 
     return orders_list
 
-def write_orders_to_csv(file_path, orders):
+def write_orders_to_csv(file_path, orders, fieldnames=None):
 
     file_path = Path(file_path)
     file_path.parent.mkdir(parents = True, exist_ok = True)
@@ -31,7 +31,8 @@ def write_orders_to_csv(file_path, orders):
     if not orders:
         print(f"Lista jest pusta. Pomijamy zapis do {file_path}")
         return
-    fieldnames = list(orders[0].keys())
+    if fieldnames is None:
+        fieldnames = list(orders[0].keys())
 
     with open(file_path, "w", encoding="utf-8", newline = "") as file:
         writer = csv.DictWriter(file, fieldnames=fieldnames)
