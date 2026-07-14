@@ -18,6 +18,14 @@ data/raw/*
 data/processed/*
 !data/processed/.gitkeep
 
+# Bazy lokalne
+*.duckdb
+*.duckdb.wal
+
+# Cache narzedzi
+.pytest_cache/
+.ruff_cache/
+
 # OS files
 .DS_Store
 Thumbs.db
@@ -25,3 +33,6 @@ Thumbs.db
 # Moje notatki
 
 notes/prompt-główny.md
+
+# Claude Code (ustawienia lokalne)
+.claude/settings.local.json
