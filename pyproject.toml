@@ -21,6 +21,10 @@ target-version = "py313"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
+# UP015 kaze usuwac tryb "r" z open(), bo jest domyslny. W repo edukacyjnym
+# piszemy tryb JAWNIE - open(path, "r") obok open(path, "w") uczy, ze tryb
+# jest wyborem, a nie magia. Swiadome odstepstwo od domyslnej reguly.
+ignore = ["UP015"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
