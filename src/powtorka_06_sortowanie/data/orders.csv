@@ -1,0 +1,17 @@
+order_id,customer_name,total_amount,status
+3001,Anna Kowalska,150.00,paid
+3002,Piotr Nowak,200.00,PAID
+3003,Anna Kowalska,100.00,paid
+3004,"Zielińska, Maria",250.00,paid
+3005,Piotr Nowak,50.00, paid
+3006,Anna Kowalska,999.00,cancelled
+3007,Marek Wilk,250.00,paid
+3008,,300.00,paid
+3009,Piotr Nowak,abc,paid
+3010,Marek Wilk,-40.00,paid
+3011,Anna Kowalska,,paid
+3012,Ewa Lis,75.50,pending
+3013,Marek Wilk,120.00,shipped
+3014,Ewa Lis,80.00,
+3015,Tomasz Bąk,60.00,paid
+3016,Anna Kowalska, 0.00 ,paid

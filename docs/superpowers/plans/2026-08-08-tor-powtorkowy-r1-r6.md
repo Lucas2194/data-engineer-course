@@ -120,20 +120,32 @@ Blok **celowo najobszerniejszy** — na prośbę ucznia (najtrudniejszy temat w 
   10 istniejących ostrzeżeń w kodzie ucznia z dni 18/20.
 - [ ] **[UCZEŃ]** Rozwiąż. → **[COACH]** review.
 
-### R6 — sortowanie + integracja ⬜ DO ZBUDOWANIA (ostatni blok)
-> ⚠️ **R6 ma NOWY FORMAT** — patrz sekcja „Zmiana formatu od R6" niżej. To pierwszy blok
-> hybrydowy: krótki drill z testami + zadanie projektowe bez testów.
+### R6 — sortowanie + integracja 🔨 ZBUDOWANY (2026-08-12), czeka na ucznia
+> ⚠️ **R6 ma NOWY FORMAT** (patrz „Zmiana formatu od R6") **ORAZ jest w całości NOWYM
+> MATERIAŁEM** (patrz „Weryfikacja pokrycia R6" niżej).
 
-- [ ] **[COACH]** Zbuduj blok. Zakres: `sorted(key=...)`, sortowanie malejące +
-      remis alfabetyczny (trik: `key=lambda x: (-x[1], x[0])`), `.items()` → lista
-      krotek, składanie wcześniejszych funkcji. Payoff: pełny `top_customers`
-      (z filtrem `paid` i sortowaniem) oraz szkielet `run_pipeline`.
-- [ ] **[COACH]** Część A (drill, z testami): 2–3 funkcje na samą mechanikę `sorted(key=)`.
-      Tam istnieje jedna poprawna odpowiedź, więc testy są właściwym narzędziem.
-- [ ] **[COACH]** Część B (projekt, BEZ testów): sama treść zadania. Uczeń pisze cały plik
-      od zera — sam projektuje sygnatury, sam podłącza, sam uruchamia, sam ogląda
-      artefakty w `reports/`. Weryfikacja: review coacha na commicie, nie pytest.
-- [ ] **[UCZEŃ]** Rozwiąż. → **[COACH]** review.
+- [x] **Zbudowany:** `notes/powtorka-06-sortowanie.md` (17 rozdziałów + tabela pułapek
+      + słowniczek EN na 20 pozycji), `src/powtorka_06_sortowanie/demo.py` (7 technik),
+      `.../data/orders.csv` (16 wierszy, celowy trójstronny remis 250.00),
+      `.../exercises.py` (5 zadań, część A), `tests/test_powtorka_06.py` (42 testy),
+      `.../PROJEKT.md` (część B) + pusty `.../raport.py`.
+- [x] **Zweryfikowany protokołem:** wzorcówka **42/42 zielone**, `ruff` czysty →
+      stuby przywrócone → **37 failed / 5 passed**. Pięć zielonych na stubie to testy
+      „nie zmienia wejścia" (asercja przechodzi trywialnie, gdy funkcja nic nie robi) —
+      celowo zostawione jako kolejna lekcja **„zielony ≠ zrobione"** (jak w R3/R4/R5).
+- [x] Demo uruchomione i sprawdzone: niczego nie zapisuje na dysk.
+- [x] Liczby w tabeli kontrolnej części B policzone wzorcową implementacją, nie ręcznie:
+      16 wierszy / 10 poprawnych / 6 niepoprawnych (`3008,3009,3010,3011,3014,3016`) /
+      suma 2254.50 / TOP3 = Anna Kowalska, Piotr Nowak, Zielińska Maria (po 250.00).
+- **Drabinka części A (5 zadań):** `sort_names` (goły `sorted`, `reverse=`) →
+  `sort_by_length` (`key=` z gotową funkcją, bez lambdy) → `sort_orders_by_amount`
+  (`key=lambda` + konwersja z tekstu) → `sorted_totals` (`.items()` + krotka
+  `(-kwota, nazwa)`) → `top_customers` (**payoff diag #7**, reuse #3+#4 + wycinek).
+- **Część B:** mini-ETL w `raport.py` pisany od zera — walidacja, dwa CSV wyjściowe,
+  raport tekstowy z TOP3 i licznikiem statusów. Importuje funkcje z R5 i R6
+  (DRY między blokami). Weryfikacja: tabela kontrolna + review coacha, nie pytest.
+  Payoff: to jest w praktyce `run_pipeline` z diagnostyki (#8).
+- [ ] **[UCZEŃ]** Rozwiąż część A, potem część B. → **[COACH]** review.
 
 ### Wyjście z toru — powrót do diagnostyki
 - [ ] Po R6: uczeń wraca do `src/day_21_diagnostyka/exercises.py` i rozwiązuje 8 zadań
@@ -208,6 +220,32 @@ widziany pierwszy raz. Nie interpretować tego jako regresu.
 - [ ] **[COACH]** Reguła na przyszłość: **przed zbudowaniem bloku powtórkowego zawsze grep po
       `src/day_*` i `notes/day-*.md`**, czy technika faktycznie występuje. Blok powtórkowy
       zawierający nowy materiał musi go oznaczyć jako nowy — jawnie, w teorii.
+
+### Weryfikacja pokrycia R6 (wykonana 2026-08-12 — ⚠️ R6 TO NOWY MATERIAŁ)
+
+Reguła „grep przed budową bloku" zadziałała po raz pierwszy — i od razu coś znalazła.
+Grep po `src/day_*` i `notes/day-*.md`:
+
+| Szukane | Dni 1–20 | Uwaga |
+|---------|----------|-------|
+| `sorted(` | **0** | jedyne trafienia: `day_21_diagnostyka` i `notes/day-21.md` |
+| `key=` | **0** | jw. |
+| `lambda` | **0** | — |
+| `reverse=` | **0** | — |
+| `.sort(` | **0** | — |
+| wycinek `[:n]` | **0** | — |
+
+**R6 nie jest powtórką — to nowy materiał w 100%.** Ta sama sytuacja co R4, z tą różnicą,
+że wykryta **przed** budową, nie po reklamacji ucznia. Konsekwencje wprowadzone od razu:
+
+1. Notatka otwiera się bannerem „⚠️ To NIE jest powtórka" z tabelą greppa.
+2. Teoria uczy od zera (17 rozdziałów) zamiast odświeżać.
+3. Drabinka startuje od gołego `sorted()` bez `key=`; `lambda` wchodzi dopiero w #3.
+4. Uczeń jest uprzedzony, że wolniejsze tempo w tym bloku **nie jest regresem**.
+
+To potwierdza wniosek z sekcji długu: **diagnostyka Dnia 21 wykracza poza deklarowany
+zakres „dni 1–20"** — zadania #7 i #8 wymagają technik, których w tych dniach nie ma.
+Po zamknięciu toru trzeba poprawić nagłówek diagnostyki albo dopisać brakujące dni.
 
 ### Weryfikacja pokrycia R5 (wykonana 2026-08-10 — czysto)
 `src/day_20_csv/csv_utils.py` (kod ucznia z dnia 20) zawiera `from pathlib import Path`,
