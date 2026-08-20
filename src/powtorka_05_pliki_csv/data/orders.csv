@@ -1,7 +1,0 @@
-order_id,customer_name,total_amount,status
-1001,Anna Kowalska,149.99,paid
-1002,Piotr Nowak,89.50,pending
-1003,Anna Kowalska,220.00,PAID
-1004,Ola Wisniewska,0,cancelled
-1005,Marek Zielinski,340.25,paid
-1006,Piotr Nowak,,pending

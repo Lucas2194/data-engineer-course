@@ -36,3 +36,6 @@ notes/prompt-główny.md
 
 # Claude Code (ustawienia lokalne)
 .claude/settings.local.json
+
+# Materialy odlozone poza glowny kurs
+/C - 2026/

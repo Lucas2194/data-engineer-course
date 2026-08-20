@@ -1,100 +1,330 @@
-# Dzień 21 — Diagnostyka po przerwie
+# Json
 
-**Data:** 2026-07-14
-**Cel dnia:** zmierzyć, co realnie zostało w głowie po 7 tygodniach przerwy.
+## 1. Czym jest JSON
 
----
+JSON oznacza: 
 
-## Zasady (przeczytaj przed startem)
+JavaScript Object Notation 
 
-1. **Nie zaglądasz do starego kodu.** Katalogi `src/day_01` … `src/day_20` są dziś
-   zakazane. Mierzymy, co pamiętasz, a nie co potrafisz skopiować. Zaglądanie
-   zafałszuje wynik i skończy się tym, że w sierpniu będziemy powtarzać nie to, co trzeba.
+Jest to tekstowy foramt zapisu i wymiany danych. 
 
-2. **Dokumentacja jest dozwolona.** `docs.python.org`, `str.strip()`, sygnatura
-   `csv.DictReader` — to nie ściąganie, to normalna praca. W firmie też będziesz
-   sprawdzał składnię.
+Na przykład
 
-3. **Reguła 20 minut.** Zacinasz się na jednym zadaniu dłużej niż 20 minut → pytasz.
-   Siedzenie 2h nad jednym błędem to nie hart ducha, tylko zmarnowany wieczór.
+```json
+{
+    "order_id": 1001,
+    "customer_name": "Anna",
+    "total_amount": 249.99,
+    "status": "paid"
+}
+```
+JSON wygląa podobnie do słownika Pythona, ale słownikiem nie jest. 
 
-4. **Tabela na dole jest ważniejsza niż zielone testy.** Serio. Zielone testy powiedzą
-   mi, że umiesz. Tabela powie mi, **czego nie umiesz** — a to jest informacja, za którą
-   płacimy tym wieczorem.
+- JSON jest tekstem zapisanym według określonych reguł 
+- Słownik jest obiektem istniejącym w pamięci uruchomionego programu.
 
----
+Python może zmienić tekst JSON na słownik lub listę. Może też wykonać operację w drugą stronę i zapisać obiekty Pythona jako JSON.
 
-## Jak pracować
+## JSON a słownik Pythona
 
-Plik z zadaniami: `src/day_21_diagnostyka/exercises.py` — osiem funkcji, każda z
-docstringiem opisującym, co ma robić. W środku jest `pass`. Twoim zadaniem jest
-zamienić `pass` na działający kod.
+Python:
+```python
+order = {
+    "order_id":1001,
+    "is_paid":True,
+    "discount_code": None,
+}
+```
+JSON
+```json
+{
+    "order_id":1001,
+    "is_paid": true,
+    "discount_code": null
+}
+```
+Najważniejsze różnice : 
 
-Uruchomienie wszystkich testów:
+JSON    Python 
+true    True
+false   False
+null    None
+obiekt  dict
+tablica list
+tekst   str
+liczba całkowita    int
+liczba dziesiętna   float
 
-    uv run pytest tests/test_day_21.py -v
+W prawidłowym JSON-ie:
 
-Uruchomienie **jednego** zadania (tak pracuj — nie patrz na 26 czerwonych testów naraz):
+- nazwy pól i teksty zapisujemy w podwójnych cudzysłowach,
+- nie używamy True, False ani None
+- Nie wolno zostawić zbędnego przecinka po ostatnim elemencie,
+- standardowy JSON nie obsługuje komentarzy. 
 
-    uv run pytest tests/test_day_21.py::TestFormatOrderSummary -v
+Niepoprawny JSON:
 
-Podgląd, dlaczego test padł (pokazuje oczekiwaną i otrzymaną wartość):
+```json
+{
+    'customer_name': 'Anna',
+    'is_paid': True,
+}
+```
 
-    uv run pytest tests/test_day_21.py::TestSafeGetTotal -v
+Poprawny JSON:
+```json
+{
+    "customer_name": "Anna",
+    "is_paid": true
+}
+```
 
-**Kolejność — od najłatwiejszego do najtrudniejszego.** Nie skacz:
+## Dlaczego JSON jest tak ważny w Data Engineeringu?
 
-| # | Funkcja | Klasa testowa | Co sprawdza |
-|---|---------|---------------|-------------|
-| 1 | `format_order_summary` | `TestFormatOrderSummary` | f-stringi, formatowanie liczb, `.strip()` |
-| 2 | `safe_get_total` | `TestSafeGetTotal` | `dict.get()`, `try/except`, konwersje typów |
-| 3 | `filter_valid_amounts` | `TestFilterValidAmounts` | pętle, warunki, budowanie listy |
-| 4 | `count_statuses` | `TestCountStatuses` | słowniki jako liczniki, normalizacja stringów |
-| 5 | `split_valid_invalid` | `TestSplitValidInvalid` | walidacja, dwie listy naraz, zwracanie krotki |
-| 6 | `read_csv_rows` | `TestReadCsvRows` | `csv.DictReader`, `pathlib`, obsługa braku pliku |
-| 7 | `top_customers` | `TestTopCustomers` | agregacja + sortowanie po dwóch kluczach |
-| 8 | `run_pipeline` | `TestRunPipeline` | **integracja wszystkiego** — to jest ten trudny |
+JSON często pojawia się jako
 
-Zadania 7 i 8 są celowo trudniejsze, niż wszystko, co robiłeś do dnia 20. Jeśli się na
-nich zatniesz — to jest normalne i planowane. Ważne, żebyś **spróbował**, zanim poprosisz
-o wskazówkę.
+- Odpowiedź z API
+- wiadomość przesyłana pomiędzy systemami
+- zapis zdarzenia lub logu
+- plik konfiguracyjny
+- dane pobierane z aplikacji internetowych
+- format wejściowy albo wyjściowy pipeline'u 
 
----
+Przykładowa odpowiedź API może zawierać : 
 
-## Podpowiedzi ogólne (nie rozwiązania)
+```json
 
-- Kwota z dwoma miejscami po przecinku: mechanizm nazywa się **format spec** w f-stringu.
-  Szukaj w dokumentacji `Format Specification Mini-Language`, sekcja o `f`.
-- „Nie może rzucić wyjątkiem" znaczy: `try` wokół konwersji, `except` łapiący **konkretne**
-  typy błędów. `except:` bez typu to nie jest odpowiedź, którą przepuszczę na review.
-- Sortowanie po dwóch kluczach naraz (malejąco po liczbie, rosnąco po nazwie) —
-  szukaj argumentu `key=` w `sorted()`. Trik: liczbę można odwrócić minusem.
-- W `run_pipeline` **użyj funkcji, które napisałeś wyżej**. Jeśli przepisujesz tę samą
-  logikę drugi raz, robisz to źle — i to zobaczę na review.
+{
+    "customer":{
+        "id": 501,
+        "name": "Anna"
+    },
+    "orders": [
+        {"order_id": 1001, "amount":249.99},
+        {"order_id": 1002, "amount":120.00}
+    ]
+}
+```
 
----
+W przeciwieństwie do CSV JSON może przechowywać dane zagnieżdzone:
 
-## Wyniki diagnostyki
+- słownik wewnątrz słownika
+- listę wewnątrz słownika
+- słowniki wewnątrz listy
 
-Wypełniaj **na bieżąco**, nie na koniec — po fakcie nie pamięta się, co bolało.
+## CSV a JSON
 
-| # | Funkcja | Zrobione bez pomocy? | Czas (min) | Co sprawiło problem |
-|---|---------|----------------------|------------|---------------------|
-| 1 | `format_order_summary` | | | |
-| 2 | `safe_get_total` | | | |
-| 3 | `filter_valid_amounts` | | | |
-| 4 | `count_statuses` | | | |
-| 5 | `split_valid_invalid` | | | |
-| 6 | `read_csv_rows` | | | |
-| 7 | `top_customers` | | | |
-| 8 | `run_pipeline` | | | |
+Cecha                       CSV                       JSON
+Podstawowa struktura        tabela                    obiekty i listy
+Zagnieżdzanie               praktycznie brak          tak
+Typy po odczycie            zwykle str                int, float, bool, None, str
+Typowe użycie               tabele i eksporty         API i dane złożone
+Czytelność prostych tabel   bardzo dobra              dobra
+Czytelność danych złożonych słaba                     bardzo dobra
 
-**Co mi całkowicie wypadło z głowy:**
+W dniu 20 wartość 249.99 z CSV została odczytana jako tekst "249.99".
 
-**Co pamiętałem lepiej, niż się spodziewałem:**
+W JSON-ie liczba 249.99 zostanie po odczycie zamieniona na falot automaatycznie, o ile w pliku nie umieścisz jej w cudzysłowie.
 
----
+## Moduł Json
 
-## Mapa braków (wypełnia coach po review)
+Python posiada wbudowany moduł json
 
-_Do uzupełnienia 16 lipca — na jej podstawie powstanie plan Fazy 1._
+import json
+
+Nie trzeba instalować żadnej dodatkowej biblioteki. 
+
+Najważniejsze funkcje
+
+**Funkcja**             **Co robi**
+json.load(file)         odczytuje JSON z otwartego pliku
+json.loads(text)        odczytuje JSON z tekstu
+json.dump(data,file)    zapisuje dane do otwartego pliku
+json.dumps(data)        zmienia dane na tekst JSON
+
+Pomocna reguła
+
+litera s oznacza string, czyli tekst
+
+- load - plik
+- loads - string 
+- dump - plik
+- dumps - string
+
+## Odczyt JSON z pliku
+
+Przykład koncepcyjny
+
+```python
+import json
+from pathlib import Path
+
+file_path = Path("data") / "settings.json"
+
+with open(file_path, "r", encoding="utf-8") as file:
+    settings = json.load(file)
+
+print(settings)
+print(type(settings))
+
+```
+
+Jeżeli główną strukturą pliku jest obiekt JSON, wynikiem będize zwykle dict 
+
+Jeżeli główną strukturą jest tablica: 
+
+```json
+
+[
+    {"order_id": 1001, "status": "paid"},
+    {"order_id": 1002, "status": "pending"}
+]
+
+Wynikiem json.load() będzie lista, a jej elementami będą słowniki
+
+```
+
+## load() a loads()
+
+json.load() pracuje z otwartym plikiem: 
+
+```python
+with open(file_path, "r", encoding="utf-8") as file:
+    data = json.load(file)
+```
+
+json.loads() pracuej  z tekstem
+
+```python
+
+json_text = '{"status": "paid", "amount": 120.0}'
+data = json.loads(json_text)
+```
+Po wykonaniu loads() zmienna data będzie słownikiem Pythona.
+
+Na tym etapie najcześciej będziemy używać json.load() 
+
+Zapis JSON 
+
+```python
+
+import json
+
+profile = {
+    "name" : "Łukasz",
+    "active" : "True,
+    "skills" : ["Python", "Git"],
+}
+
+with open("output/profile.json", "w", encoding="utf-8") as file:
+    json.jump(profile, file, ensure_ascii=False, indent=4)
+```
+Znaczenie parametrów
+
+- ensure_ascii = False - polskie znaki pozostają czytelne
+- indent=4 - plik zostaje estetycznie sformatowany. 
+
+Bez ensure litera Ł mogłaby zostać zapisana jako kod Unicode.
+ten plik nadal byłby poprawny, ale mniej wygodny do czytania
+
+## Dane zagnieżdzone 
+
+Przykładowe zamówienie 
+
+```json
+
+order = {
+    "order_id": 1001,
+    "customer_name": "Anna",
+    "tags": ["vip", "newsletter"],
+    "delivery": {
+        "city": "Gdańsk",
+        "method": "parcel_locker",
+    },
+}
+```
+
+Dostęp do danych
+
+```python
+print(order["customer_name"])
+print(order["tags"][0])
+print(order["delivery"]["city"])
+```
+
+Czytamy od lewej strony
+
+pobierz pole delivery
+jego wartością jest kolejny słownik
+z tego słownika pobierz pole city
+
+Bezpieczenijszy wariant
+
+```python
+delivery = order.get("delivery")
+
+if delivery is not None:
+    city = delivery.get("city")
+    print(city)
+```
+
+To ważne, ponieważ delivery może mieć wartość None. 
+
+## Obłusga błędów
+
+Brak pliku. 
+
+Jeśli ścieżka nie istnieje, open() może zgłosić FileNotFoundError
+
+Ten błąd jest znany
+
+Niepoprawny JSON
+
+Jeżeli plik ma błędną składnie, json.load() zgłosi:
+
+json.JSONDecodeError
+
+Przykład błędu w pliku
+
+```json
+
+{
+    "name": "Anna",
+    "status": "paid"
+}
+```
+Pomiędzy polami brakuje przecinka
+
+Schemat obsługi
+
+```python
+
+try:
+    ...
+except FileNotFoundError:
+    ...
+except json.JSONDecodeError:
+    ...
+
+```
+
+Nie należy uzywać except Exception bez konkretnego powodu. Programista powinien wiedzieć, jaki rodzaj błędu bedzię próbował obsłużyć.
+
+## Serializacja i deserializacja 
+
+Deserializacja 
+
+Json - > obiekty Pythona
+
+Wykonujemy ją między innymi json.load() i json.loads()
+
+Serializacja 
+
+Obiekty Pythona -> JSON
+
+Wykonują ją między innymi json.dump() i json.dumps()
+
+Proste zdanie do zapamiętania 
+
+**json.load() deserializuje dane z pliku JSON do obiektów Pythona**
+**a json.dump() serializuje obiekty Pythona do pliku JSON**

@@ -1,0 +1,36 @@
+[
+    {
+        "order_id": 1001,
+        "customer_name": "Anna",
+        "total_amount": 249.99,
+        "status": "paid",
+        "tags": [
+            "vip"
+        ],
+        "delivery": {
+            "city": "Gdańsk",
+            "method": "parcel_locker"
+        }
+    },
+    {
+        "order_id": 1003,
+        "customer_name": "Kasia",
+        "total_amount": 120.0,
+        "status": "paid",
+        "tags": [
+            "new"
+        ],
+        "delivery": {
+            "city": "Gdynia",
+            "method": "pickup"
+        }
+    },
+    {
+        "order_id": 1005,
+        "customer_name": "Ola",
+        "total_amount": 55.0,
+        "status": "paid",
+        "tags": [],
+        "delivery": null
+    }
+]
