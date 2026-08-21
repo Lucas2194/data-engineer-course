@@ -1,0 +1,21 @@
+{
+    "total_orders": 5,
+    "paid_orders": 3,
+    "paid_total": 424.99,
+    "sum_order_by_status": {
+        "paid": 424.99,
+        "pending": 89.5,
+        "cancelled": 310.0
+    },
+    "orders_by_status": {
+        "paid": 3,
+        "pending": 1,
+        "cancelled": 1
+    },
+    "delivery_methods": {
+        "parcel_locker": 1,
+        "courier": 2,
+        "pickup": 1,
+        "missing": 1
+    }
+}

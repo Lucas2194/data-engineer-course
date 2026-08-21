@@ -1,0 +1,54 @@
+[
+  {
+    "order_id": 1001,
+    "customer_name": "Anna",
+    "total_amount": 249.99,
+    "status": "paid",
+    "tags": ["vip"],
+    "delivery": {
+      "city": "Gdańsk",
+      "method": "parcel_locker"
+    }
+  },
+  {
+    "order_id": 1002,
+    "customer_name": "Tomasz",
+    "total_amount": 89.50,
+    "status": "pending",
+    "tags": [],
+    "delivery": {
+      "city": "Kartuzy",
+      "method": "courier"
+    }
+  },
+  {
+    "order_id": 1003,
+    "customer_name": "Kasia",
+    "total_amount": 120.00,
+    "status": "paid",
+    "tags": ["new"],
+    "delivery": {
+      "city": "Gdynia",
+      "method": "pickup"
+    }
+  },
+  {
+    "order_id": 1004,
+    "customer_name": "Marek",
+    "total_amount": 310.00,
+    "status": "cancelled",
+    "tags": ["vip", "returning"],
+    "delivery": {
+      "city": "Sopot",
+      "method": "courier"
+    }
+  },
+  {
+    "order_id": 1005,
+    "customer_name": "Ola",
+    "total_amount": 55.00,
+    "status": "paid",
+    "tags": [],
+    "delivery": null
+  }
+]
