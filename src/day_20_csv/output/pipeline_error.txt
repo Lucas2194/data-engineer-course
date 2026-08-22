@@ -1,0 +1,5 @@
+
+STATUS: FAILED
+Ścieżka wejściowa C:\Users\lucao\Desktop\Data Enginering - 2026\src\day_20_csv\data\test_cases\orders_missing_status.csv
+Nazwa typu wyjątku ValueError
+Pipeline został zatrzymany z powodu: Brakuje nagłówków: status

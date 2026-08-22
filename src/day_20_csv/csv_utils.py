@@ -1,27 +1,32 @@
 import csv
 from pathlib import Path
+from validators import find_missing_columns
 
-def read_orders_from_csv(file_path):
+def read_orders_from_csv(file_path, required_columns):
     
     orders_list = [] 
 
-    with open(file_path, "r", encoding="utf-8") as file:
+    file_path = Path(file_path)
+
+    with open(file_path, "r", encoding="utf-8", newline ="") as file:
         
         reader = csv.DictReader(file)
+
+        if reader.fieldnames is None:
+            raise ValueError("Brakuje nagłówka")
+
+        missing_columns = find_missing_columns(reader.fieldnames, required_columns)
+
+        if missing_columns != []:
+            raise ValueError(f"Brakuje nagłówków: {", ".join(missing_columns)}")
 
         for row in reader:
             orders_list.append(row)
 
+    if not orders_list:
+        raise ValueError("Plik ma nagłówek ale nie zawiera danych")
+
     return orders_list        
-
-def read_orders_from_csv_way_second(file_path):
-    
-    with open(file_path, "r", encoding="utf-8") as file:
-
-        reader = csv.DictReader(file)
-        orders_list = list(reader)
-
-    return orders_list
 
 def write_orders_to_csv(file_path, orders, fieldnames=None):
 

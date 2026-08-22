@@ -58,3 +58,11 @@ def validate_orders(orders):
             all_validation_errors.extend(errors)
 
     return valid_orders, invalid_orders, all_validation_errors
+
+def find_missing_columns(actual_columns, required_columns):
+    missing_columns = []
+    for required_column in required_columns:
+        if required_column not in actual_columns:
+            missing_columns.append(required_column)
+
+    return missing_columns
