@@ -1,90 +1,92 @@
-Te pytania mogą pojawić się na pierwszej rozmowie albo zostać użyte do
-sprawdzenia podstaw podczas rozmowy o projekcie.
+# Dzień 25 - Pandas basic
 
-Pytanie: czym jest Pandas?
+## Najważniejsze
 
-Przykładowa odpowiedź:
+- Pandas jest biblioteką Pythona do pracy z danymi tabelarycznymi.
+- Standardowy import to `import pandas as pd`.
+- `pd.read_csv(path)` wczytuje CSV i zwraca `DataFrame`.
+- `DataFrame` jest strukturą dwuwymiarową: ma wiersze i kolumny.
+- `Series` jest strukturą jednowymiarową i często reprezentuje jedną kolumnę.
+- Po wczytaniu danych najpierw je kontrolujemy, a dopiero później transformujemy.
 
-Pandas to biblioteka Pythona do pracy z danymi tabelarycznymi. Udostępnia
-między innymi struktury DataFrame i Series oraz narzędzia do wczytywania,
-filtrowania, przekształcania i analizowania danych.
+## Mini przykład
 
-Pytanie: czym różni się DataFrame od Series?
+```python
+import pandas as pd
 
-Przykładowa odpowiedź:
+orders = pd.read_csv("data/orders.csv")
 
-Series jest strukturą jednowymiarową, często odpowiadającą jednej kolumnie.
-DataFrame jest strukturą dwuwymiarową składającą się z wierszy i kolumn.
+paid_orders = orders.loc[
+    (orders["status"] == "paid")
+    & (orders["total_amount"] > 150),
+    ["order_id", "customer_name", "total_amount"],
+]
+```
 
-Pytanie: co sprawdzasz po wczytaniu pliku CSV?
+## Zapamiętaj
 
-Przykładowa odpowiedź:
+- Indeks nie musi być tym samym co biznesowy identyfikator rekordu.
+- `head()` pokazuje początek danych.
+- `shape` zwraca krotkę `(liczba_wierszy, liczba_kolumn)`.
+- `len(df)` zwraca liczbę wierszy.
+- `columns` pokazuje nazwy kolumn.
+- `dtypes` pokazuje typ każdej kolumny.
+- `info()` daje szybki raport o strukturze `DataFrame`.
+- `df["column"]` zwraca `Series`.
+- `df[["column"]]` zwraca `DataFrame` z jedną kolumną.
+- `df[["a", "b"]]` wybiera kilka kolumn.
+- Warunek dla kolumny tworzy maskę wartości `True` i `False`.
+- `df.loc[mask]` filtruje wiersze.
+- `df.loc[mask, ["a", "b"]]` filtruje wiersze i wybiera kolumny.
+- W Pandas równość zapisujemy przez `==`, a w SQL przez `=`.
+- Maski łączymy przez `&` i `|`, a każdy warunek umieszczamy w nawiasach.
+- Wynik filtrowania warto zapisywać pod opisową nazwą.
 
-Najpierw oglądam kilka pierwszych rekordów, rozmiar zbioru, nazwy kolumn,
-typy danych i liczbę niepustych wartości. W Pandas mogę do tego użyć między
-innymi head, shape, columns, dtypes oraz info.
+## Pytania na rozmowę
 
-Pytanie: czym różni się filtrowanie w Pandas od WHERE w SQL?
+### Pytanie: Czym jest Pandas?
 
-Przykładowa odpowiedź:
+<details>
+<summary>Przykładowa odpowiedź</summary>
 
-WHERE jest częścią zapytania wykonywanego przez silnik bazy danych. W Pandas
-tworzę maskę logiczną dla wierszy DataFrame i przekazuję ją na przykład do
-loc. Cel może być podobny, ale operacja wykonuje się w innym środowisku.
+> Pandas to biblioteka Pythona do wczytywania, sprawdzania, przekształcania i analizowania danych tabelarycznych.
 
-Pytanie: dlaczego w Pandas używamy & zamiast and?
+</details>
 
-Przykładowa odpowiedź:
+### Pytanie: Czym różni się `DataFrame` od `Series`?
 
-Warunek dla kolumny Pandas tworzy Series wielu wartości True i False. Operator
-& łączy dwie takie maski element po elemencie, natomiast zwykłe and służy do
-łączenia pojedynczych wartości logicznych.
+<details>
+<summary>Przykładowa odpowiedź</summary>
 
-Nie ucz się tych odpowiedzi słowo w słowo. Powiedz je własnymi słowami i pokaż
-na przykładzie orders.
+> `DataFrame` jest dwuwymiarową tabelą z wierszami i kolumnami, a `Series` jest jednowymiarową kolekcją, często jedną kolumną tabeli.
 
-Mini-notatka do zapamiętania
+</details>
 
-Pandas jest biblioteką Pythona do pracy z danymi tabelarycznymi.
+### Pytanie: Co sprawdzasz po wczytaniu pliku CSV?
 
-Standardowy import to import pandas as pd.
+<details>
+<summary>Przykładowa odpowiedź</summary>
 
-pd.read_csv(path) wczytuje CSV i zwraca DataFrame.
+> Między innymi pierwsze wiersze, rozmiar tabeli, nazwy kolumn, typy danych, brakujące wartości i duplikaty.
 
-DataFrame jest strukturą dwuwymiarową: ma wiersze i kolumny.
+</details>
 
-Series jest strukturą jednowymiarową i często reprezentuje jedną kolumnę.
+### Pytanie: Czym różni się filtrowanie w Pandas od `WHERE` w SQL?
 
-Indeks nie musi być tym samym co biznesowy identyfikator rekordu.
+<details>
+<summary>Przykładowa odpowiedź</summary>
 
-head() pokazuje początek danych.
+> Cel jest podobny: wybrać pasujące wiersze. SQL używa klauzuli `WHERE`, a Pandas maski logicznej, np. `df[df["status"] == "paid"]`.
 
-shape zwraca krotkę (liczba_wierszy, liczba_kolumn).
+</details>
 
-len(df) zwraca liczbę wierszy.
+### Pytanie: Dlaczego w Pandas używamy `&` zamiast `and`?
 
-columns pokazuje nazwy kolumn.
+<details>
+<summary>Przykładowa odpowiedź</summary>
 
-dtypes pokazuje typ każdej kolumny.
+> `&` łączy wartości logiczne element po elemencie w `Series`. Operator `and` oczekuje pojedynczej wartości `True` albo `False`.
 
-info() daje szybki raport o strukturze DataFrame.
+</details>
 
-df["column"] zwraca Series.
-
-df[["column"]] zwraca DataFrame.
-
-df[["a", "b"]] wybiera kilka kolumn.
-
-Warunek dla kolumny tworzy maskę wartości True i False.
-
-df.loc[mask] filtruje wiersze.
-
-df.loc[mask, ["a", "b"]] filtruje wiersze i wybiera kolumny.
-
-W Pandas równość zapisujemy przez ==, a w SQL przez =.
-
-Maski łączymy przez & i |, a każdy warunek umieszczamy w nawiasach.
-
-Wynik filtrowania warto zapisywać pod opisową nazwą.
-
-Po wczytaniu danych najpierw je kontrolujemy, a dopiero później transformujemy.
+Nie ucz się odpowiedzi słowo w słowo. Powiedz je własnymi słowami i pokaż na przykładzie `orders`.
