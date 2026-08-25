@@ -29,3 +29,4 @@ Krótkie notatki do szybkiej powtórki po każdej lekcji. W sekcji **Pytania na 
 - [Dzień 24 - SQL basic recap](SQL basic recap.md)
 - [Dzień 25 - Pandas basic](Pandas basic.md)
 - [Dzień 26 - SQL: sortowanie, `LIMIT`, `IN` i `BETWEEN`](day-26-sql-order-by.md)
+- [Dzień 27 - Pandas: sortowanie i filtrowanie](day-27-pandas-sort-filter.md)
