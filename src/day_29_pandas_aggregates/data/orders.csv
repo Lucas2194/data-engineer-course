@@ -1,0 +1,13 @@
+order_id,customer_name,total_amount,status,city
+1001,Anna,249.99,paid,Gdańsk
+1002,Tomasz,89.50,pending,Kartuzy
+1003,Kasia,120.00,paid,Gdynia
+1004,Marek,310.00,cancelled,Sopot
+1005,Ola,55.00,paid,Gdańsk
+1006,Piotr,450.00,paid,Gdynia
+1007,Ewa,199.99,pending,Gdańsk
+1008,Karol,75.00,cancelled,Kartuzy
+1009,Anna,180.00,paid,Gdańsk
+1010,Tomasz,520.00,paid,Kartuzy
+1011,Natalia,99.99,pending,Gdynia
+1012,Marek,260.00,paid,Sopot
